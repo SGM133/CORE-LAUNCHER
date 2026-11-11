@@ -1,0 +1,221 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "CoreLauncher/0.2.1": {
+        "dependencies": {
+          "CmlLib.Core": "4.1.0",
+          "CmlLib.Core.Auth.Microsoft": "3.4.0"
+        },
+        "runtime": {
+          "CoreLauncher.dll": {}
+        }
+      },
+      "CmlLib.Core/4.1.0": {
+        "dependencies": {
+          "CmlLib.Core.Commons": "4.0.0",
+          "LZMA-SDK": "19.0.0",
+          "SharpZipLib": "1.4.2"
+        },
+        "runtime": {
+          "lib/net8.0/CmlLib.Core.dll": {
+            "assemblyVersion": "4.1.0.0",
+            "fileVersion": "4.1.0.0"
+          }
+        }
+      },
+      "CmlLib.Core.Auth.Microsoft/3.4.0": {
+        "dependencies": {
+          "CmlLib.Core.Commons": "4.0.0",
+          "XboxAuthNet.Game": "1.5.0"
+        },
+        "runtime": {
+          "lib/net10.0/CmlLib.Core.Auth.Microsoft.dll": {
+            "assemblyVersion": "3.4.0.0",
+            "fileVersion": "3.4.0.0"
+          }
+        }
+      },
+      "CmlLib.Core.Commons/4.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/CmlLib.Core.Commons.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "LZMA-SDK/19.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/SevenZip.dll": {
+            "assemblyVersion": "19.0.0.0",
+            "fileVersion": "19.0.0.0"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.1": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.324.11423"
+          }
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/8.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.324.11423"
+          }
+        }
+      },
+      "Microsoft.Web.WebView2/1.0.1823.32": {
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Core.dll": {
+            "assemblyVersion": "1.0.1823.32",
+            "fileVersion": "1.0.1823.32"
+          },
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.WinForms.dll": {
+            "assemblyVersion": "1.0.1823.32",
+            "fileVersion": "1.0.1823.32"
+          },
+          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Wpf.dll": {
+            "assemblyVersion": "1.0.1823.32",
+            "fileVersion": "1.0.1823.32"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/WebView2Loader.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "1.0.1823.32"
+          },
+          "runtimes/win-x64/native/WebView2Loader.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.0.1823.32"
+          },
+          "runtimes/win-x86/native/WebView2Loader.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.0.1823.32"
+          }
+        }
+      },
+      "SharpZipLib/1.4.2": {
+        "runtime": {
+          "lib/net6.0/ICSharpCode.SharpZipLib.dll": {
+            "assemblyVersion": "1.4.2.13",
+            "fileVersion": "1.4.2.13"
+          }
+        }
+      },
+      "XboxAuthNet/3.1.0": {
+        "dependencies": {
+          "Microsoft.Web.WebView2": "1.0.1823.32"
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/XboxAuthNet.dll": {
+            "assemblyVersion": "3.1.0.0",
+            "fileVersion": "3.1.0.0"
+          }
+        }
+      },
+      "XboxAuthNet.Game/1.5.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.1",
+          "XboxAuthNet": "3.1.0"
+        },
+        "runtime": {
+          "lib/net10.0/XboxAuthNet.Game.dll": {
+            "assemblyVersion": "1.5.0.0",
+            "fileVersion": "1.5.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CoreLauncher/0.2.1": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CmlLib.Core/4.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vVivJ2Bnd7eZrCLzqvp8QwUTxP98cgcZgtlJ3RksLvaIwe/MAMFc92lkCVKw0nVIKwvNeMTH4EVlKg2HW8SD7w==",
+      "path": "cmllib.core/4.1.0",
+      "hashPath": "cmllib.core.4.1.0.nupkg.sha512"
+    },
+    "CmlLib.Core.Auth.Microsoft/3.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Q1aiwy0lpjTcKpbWhkCRh057NvDig7e/+kb9Ij9X8ZRXth+pO6kiKNG3BsaJ2EEQschYaXsFAmkx0wxitHHI3g==",
+      "path": "cmllib.core.auth.microsoft/3.4.0",
+      "hashPath": "cmllib.core.auth.microsoft.3.4.0.nupkg.sha512"
+    },
+    "CmlLib.Core.Commons/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8yD43GJA9RyFpqR8PGP9LpUKORBgOVXQVwH0OxwXnNp/gNpVQMIiraKdmHbFO5bhO7jujFOg1FdtUIFYYdlykg==",
+      "path": "cmllib.core.commons/4.0.0",
+      "hashPath": "cmllib.core.commons.4.0.0.nupkg.sha512"
+    },
+    "LZMA-SDK/19.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/4yPB/YNtttdbxmHifyNUw6rUiBqCCUgeuokXsWvM/X9CDXJq1eQdI9uVgNpJdrzAZhTIAqNzbOP7Z2ogZt+2g==",
+      "path": "lzma-sdk/19.0.0",
+      "hashPath": "lzma-sdk.19.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fGLiCRLMYd00JYpClraLjJTNKLmMJPnqxMaiRzEBIIvevlzxz33mXy39Lkd48hu1G+N21S7QpaO5ZzKsI6FRuA==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/8.0.1",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.8.0.1.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RIFgaqoaINxkM2KTOw72dmilDmTrYA0ns2KW4lDz4gZ2+o6IQ894CzmdL3StM2oh7QQq44nCWiqKqc4qUI9Jmg==",
+      "path": "microsoft.extensions.logging.abstractions/8.0.1",
+      "hashPath": "microsoft.extensions.logging.abstractions.8.0.1.nupkg.sha512"
+    },
+    "Microsoft.Web.WebView2/1.0.1823.32": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppRcWBUNggFIqyJp7PfgS4Oe8/7yli/mHcTNDOaqo3ZzJWnv9AOr0WE9ceEP5SPs1M7CQ3QvdGMR7KNz0v09EA==",
+      "path": "microsoft.web.webview2/1.0.1823.32",
+      "hashPath": "microsoft.web.webview2.1.0.1823.32.nupkg.sha512"
+    },
+    "SharpZipLib/1.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yjj+3zgz8zgXpiiC3ZdF/iyTBbz2fFvMxZFEBPUcwZjIvXOf37Ylm+K58hqMfIBt5JgU/Z2uoUS67JmTLe973A==",
+      "path": "sharpziplib/1.4.2",
+      "hashPath": "sharpziplib.1.4.2.nupkg.sha512"
+    },
+    "XboxAuthNet/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+J4JQ3Eq52Xp1JmddftJ3k0wzX5ZUSpifMUC+JqU1XB6keDn9Gu1G6EVviISppGrLU9GMyquI7rtJB0GZD2jrQ==",
+      "path": "xboxauthnet/3.1.0",
+      "hashPath": "xboxauthnet.3.1.0.nupkg.sha512"
+    },
+    "XboxAuthNet.Game/1.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WnYjZ+NCIZgEWPW8zSh5uC50sadTkleSQI3OpKsM9+kvkCDEINlbpn7ey5GtsP4oTl3oCfHh3gHnspU893Nicw==",
+      "path": "xboxauthnet.game/1.5.0",
+      "hashPath": "xboxauthnet.game.1.5.0.nupkg.sha512"
+    }
+  }
+}

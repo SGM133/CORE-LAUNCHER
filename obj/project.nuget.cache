@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "EIorn0IEnZU=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\podob\\Desktop\\проекты\\core launcher\\CoreLauncher\\CoreLauncher.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\podob\\.nuget\\packages\\cmllib.core\\4.1.0\\cmllib.core.4.1.0.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\cmllib.core.auth.microsoft\\3.4.0\\cmllib.core.auth.microsoft.3.4.0.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\cmllib.core.commons\\4.0.0\\cmllib.core.commons.4.0.0.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\lzma-sdk\\19.0.0\\lzma-sdk.19.0.0.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.1\\microsoft.extensions.dependencyinjection.abstractions.8.0.1.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.1\\microsoft.extensions.logging.abstractions.8.0.1.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\microsoft.net.illink.tasks\\10.0.9\\microsoft.net.illink.tasks.10.0.9.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\microsoft.web.webview2\\1.0.1823.32\\microsoft.web.webview2.1.0.1823.32.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\sharpziplib\\1.4.2\\sharpziplib.1.4.2.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\xboxauthnet\\3.1.0\\xboxauthnet.3.1.0.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\xboxauthnet.game\\1.5.0\\xboxauthnet.game.1.5.0.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\10.0.9\\microsoft.netcore.app.runtime.win-x64.10.0.9.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\10.0.9\\microsoft.windowsdesktop.app.runtime.win-x64.10.0.9.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\10.0.9\\microsoft.aspnetcore.app.runtime.win-x64.10.0.9.nupkg.sha512"
+  ],
+  "logs": []
+}
