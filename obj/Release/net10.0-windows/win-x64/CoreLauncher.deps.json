@@ -7,10 +7,12 @@
   "targets": {
     ".NETCoreApp,Version=v10.0": {},
     ".NETCoreApp,Version=v10.0/win-x64": {
-      "CoreLauncher/0.2.1": {
+      "CoreLauncher/0.5.0": {
         "dependencies": {
           "CmlLib.Core": "4.1.0",
           "CmlLib.Core.Auth.Microsoft": "3.4.0",
+          "CmlLib.Core.Installer.Forge": "1.1.1",
+          "CmlLib.Core.Installer.NeoForge": "4.0.1",
           "runtimepack.Microsoft.NETCore.App.Runtime.win-x64": "10.0.9",
           "runtimepack.Microsoft.WindowsDesktop.App.Runtime.win-x64": "10.0.9"
         },
@@ -980,6 +982,38 @@
           }
         }
       },
+      "CmlLib.Core.Installer.Forge/1.1.1": {
+        "dependencies": {
+          "CmlLib.Core": "4.1.0",
+          "HtmlAgilityPack": "1.11.48"
+        },
+        "runtime": {
+          "lib/netstandard2.0/CmlLib.Core.Installer.Forge.dll": {
+            "assemblyVersion": "1.1.1.0",
+            "fileVersion": "1.1.1.0"
+          }
+        }
+      },
+      "CmlLib.Core.Installer.NeoForge/4.0.1": {
+        "dependencies": {
+          "CmlLib.Core": "4.1.0",
+          "HtmlAgilityPack": "1.11.48"
+        },
+        "runtime": {
+          "lib/netstandard2.0/CmlLib.Core.Installer.NeoForge.dll": {
+            "assemblyVersion": "4.0.1.0",
+            "fileVersion": "4.0.1.0"
+          }
+        }
+      },
+      "HtmlAgilityPack/1.11.48": {
+        "runtime": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {
+            "assemblyVersion": "1.11.48.0",
+            "fileVersion": "1.11.48.0"
+          }
+        }
+      },
       "LZMA-SDK/19.0.0": {
         "runtime": {
           "lib/netstandard2.0/SevenZip.dll": {
@@ -1062,7 +1096,7 @@
     }
   },
   "libraries": {
-    "CoreLauncher/0.2.1": {
+    "CoreLauncher/0.5.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -1097,6 +1131,27 @@
       "sha512": "sha512-8yD43GJA9RyFpqR8PGP9LpUKORBgOVXQVwH0OxwXnNp/gNpVQMIiraKdmHbFO5bhO7jujFOg1FdtUIFYYdlykg==",
       "path": "cmllib.core.commons/4.0.0",
       "hashPath": "cmllib.core.commons.4.0.0.nupkg.sha512"
+    },
+    "CmlLib.Core.Installer.Forge/1.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zMPwDdq/nkKoTMd7CLKwu81oEsTb1Jd/wHm748FoM4gwCd81rIExwRv4ae0QpFfYc7EeplbVz8mrEn5yqgCx0w==",
+      "path": "cmllib.core.installer.forge/1.1.1",
+      "hashPath": "cmllib.core.installer.forge.1.1.1.nupkg.sha512"
+    },
+    "CmlLib.Core.Installer.NeoForge/4.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2a6gkhnJmumj4E8YlDa40/bMmjMRV6sVp3DY4OjFf5edM4GJHqPw1g/iOHkM+z+jHTnmdX1zbCFOMiR74fzglQ==",
+      "path": "cmllib.core.installer.neoforge/4.0.1",
+      "hashPath": "cmllib.core.installer.neoforge.4.0.1.nupkg.sha512"
+    },
+    "HtmlAgilityPack/1.11.48": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BTYfqMoTtnlUz5hqJZ3qxh/SDWMtJAulcz2vIr2TRj5BhfdJZD1E1HSpNI9rvIQiYJzl2xoVtCNzCcANjzbScQ==",
+      "path": "htmlagilitypack/1.11.48",
+      "hashPath": "htmlagilitypack.1.11.48.nupkg.sha512"
     },
     "LZMA-SDK/19.0.0": {
       "type": "package",

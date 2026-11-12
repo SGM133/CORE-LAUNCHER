@@ -34,6 +34,53 @@ public static class PixelScene
         "..LLLDDDDDDLLL..", ".LLLLLLDDLLLLLL.", ".DDLLLLLLLLLLDD.", "..gG..DDDD..Gg..",
     };
 
+    // ---- пиксельные значки разделов (11x11), красятся в цвет текста кнопки ----
+    public static readonly string[] IcoPlay =
+    {
+        "...........", "..XX.......", "..XXXX.....", "..XXXXXX...", "..XXXXXXXX.", "..XXXXXXXXX",
+        "..XXXXXXXX.", "..XXXXXX...", "..XXXX.....", "..XX.......", "...........",
+    };
+    public static readonly string[] IcoProfiles =
+    {
+        "XXXXXXXXXXX", "X.........X", "X.XX.XXXX.X", "X.........X", "XXXXXXXXXXX", "...........",
+        "XXXXXXXXXXX", "X.........X", "X.XX.XXXX.X", "X.........X", "XXXXXXXXXXX",
+    };
+    public static readonly string[] IcoMods =
+    {
+        "...........", "XXXXXXXXXXX", "X.........X", "X.........X", "XXXXXXXXXXX", "X...XXX...X",
+        "X...X.X...X", "X...XXX...X", "X.........X", "X.........X", "XXXXXXXXXXX",
+    };
+    public static readonly string[] IcoSkins =
+    {
+        "...........", "XXXXXXXXXXX", "XXXXXXXXXXX", "XXXXXXXXXXX", "X.........X", "X.XX...XX.X",
+        "X.XX...XX.X", "X.........X", "X...XXX...X", "X.........X", "XXXXXXXXXXX",
+    };
+    public static readonly string[] IcoConsole =
+    {
+        "...........", "XXXXXXXXXXX", "X.........X", "X.X.......X", "X..X......X", "X...X.....X",
+        "X..X......X", "X.X..XXXX.X", "X.........X", "XXXXXXXXXXX", "...........",
+    };
+    public static readonly string[] IcoSettings =
+    {
+        "....XXX....", ".XX.XXX.XX.", ".XXXXXXXXX.", "..XX...XX..", "XXX.....XXX", "XXX.....XXX",
+        "XXX.....XXX", "..XX...XX..", ".XXXXXXXXX.", ".XX.XXX.XX.", "....XXX....",
+    };
+
+    /// <summary>Значок из пикселей. Цвет берёт у кнопки, в которой лежит (следит за наведением и выбором).</summary>
+    public static FrameworkElement Icon(string[] rows, double px)
+    {
+        var g = new GeometryGroup { FillRule = FillRule.Nonzero };
+        for (int y = 0; y < rows.Length; y++)
+            for (int x = 0; x < rows[y].Length; x++)
+                if (rows[y][x] == 'X') g.Children.Add(new RectangleGeometry(new Rect(x * px, y * px, px, px)));
+        g.Freeze();
+        var p = new Path { Data = g, Width = 11 * px, Height = rows.Length * px, SnapsToDevicePixels = true, VerticalAlignment = VerticalAlignment.Center };
+        RenderOptions.SetEdgeMode(p, EdgeMode.Aliased);
+        p.SetBinding(Shape.FillProperty, new System.Windows.Data.Binding("Foreground")
+        { RelativeSource = new System.Windows.Data.RelativeSource(System.Windows.Data.RelativeSourceMode.FindAncestor, typeof(Control), 1) });
+        return p;
+    }
+
     static Canvas Frame(string[] rows, int px)
     {
         var c = new Canvas { Width = 16 * px, Height = rows.Length * px };
@@ -54,8 +101,8 @@ public static class PixelScene
         var a = Frame(FireA, px); var b = Frame(FireB, px); b.Visibility = Visibility.Collapsed;
         var glow = new Ellipse
         {
-            Width = 16 * px * 2.2, Height = 13 * px * 2.2,
-            Fill = new RadialGradientBrush(Color.FromArgb(0x70, 0xFF, 0xA8, 0x40), Color.FromArgb(0, 0xFF, 0xA8, 0x40)),
+            Width = 16 * px, Height = 13 * px,   // свечение целиком внутри рамки, чтобы не обрезалось квадратом
+            Fill = new RadialGradientBrush(Color.FromArgb(0x60, 0xFF, 0xA8, 0x40), Color.FromArgb(0, 0xFF, 0xA8, 0x40)),
         };
         var grid = new Grid { Width = 16 * px, Height = 13 * px, SnapsToDevicePixels = true };
         glow.HorizontalAlignment = HorizontalAlignment.Center; glow.VerticalAlignment = VerticalAlignment.Center;
@@ -81,13 +128,14 @@ public static class PixelScene
         for (int i = 0; i < count; i++)
         {
             int s = rnd.Next(0, 4) == 0 ? 4 : 3;
-            var color = rnd.Next(0, 3) == 0 ? Color.FromRgb(0xFF, 0xC8, 0x57) : Color.FromRgb(0xE6, 0xEA, 0xFF);
+            // тёплые искры вместо звёзд
+            var color = rnd.Next(0, 3) == 0 ? Color.FromRgb(0xFF, 0xE0, 0x8A) : Color.FromRgb(0xFF, 0x9F, 0x43);
             var r = new Rectangle { Width = s, Height = s, Fill = new SolidColorBrush(color), Opacity = 0.25 + rnd.NextDouble() * 0.5 };
             Canvas.SetLeft(r, rnd.NextDouble() * w); Canvas.SetTop(r, rnd.NextDouble() * h);
             canvas.Children.Add(r);
             if (animate)
             {
-                var an = new DoubleAnimation(0.15, 0.9, TimeSpan.FromSeconds(1.2 + rnd.NextDouble() * 2.5))
+                var an = new DoubleAnimation(0.05, 0.6, TimeSpan.FromSeconds(1.2 + rnd.NextDouble() * 2.5))
                 { AutoReverse = true, RepeatBehavior = RepeatBehavior.Forever, BeginTime = TimeSpan.FromSeconds(rnd.NextDouble() * 2) };
                 r.BeginAnimation(UIElement.OpacityProperty, an);
             }

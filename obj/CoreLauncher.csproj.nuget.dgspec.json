@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\Users\\podob\\Desktop\\проекты\\core launcher\\CoreLauncher\\CoreLauncher.csproj": {
-      "version": "0.2.1",
+      "version": "0.5.0",
       "restore": {
         "projectUniqueName": "C:\\Users\\podob\\Desktop\\проекты\\core launcher\\CoreLauncher\\CoreLauncher.csproj",
         "projectName": "CoreLauncher",
@@ -53,6 +53,14 @@
             "CmlLib.Core.Auth.Microsoft": {
               "target": "Package",
               "version": "[3.4.0, )"
+            },
+            "CmlLib.Core.Installer.Forge": {
+              "target": "Package",
+              "version": "[1.1.1, )"
+            },
+            "CmlLib.Core.Installer.NeoForge": {
+              "target": "Package",
+              "version": "[4.0.1, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",

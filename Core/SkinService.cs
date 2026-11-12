@@ -75,15 +75,46 @@ public static class SkinService
         return p;
     }
 
-    /// <summary>Встроенный набор, чтобы сразу было что выбрать: скин-путник и фирменные плащи Core.</summary>
+    /// <summary>Тонкие руки (Alex)? У таких скинов 4-й столбец правой руки пустой.</summary>
+    public static bool IsSlim(Px skin) => skin.W == 64 && skin.H == 64 && skin.D[(20 * 64 + 54) * 4 + 3] == 0;
+
+    public static bool IsSkinSize(Px px) => (px.W == 64 && px.H == 64) || (px.W == 64 && px.H == 32);
+
+    /// <summary>Скин по умолчанию: Стив, если он есть в библиотеке.</summary>
+    public static string? DefaultSkinPath()
+    {
+        var steve = Path.Combine(Paths.CssSkins, "Steve.png");
+        return File.Exists(steve) ? steve : Skins().FirstOrDefault();
+    }
+
+    static byte[] Stock(string name)
+    {
+        using var s = System.Windows.Application.GetResourceStream(new Uri($"pack://application:,,,/Assets/skins/{name}.png")).Stream;
+        using var ms = new MemoryStream();
+        s.CopyTo(ms);
+        return ms.ToArray();
+    }
+
+    /// <summary>Встроенный набор, чтобы сразу было что выбрать: официальные Стив и Алекс и фирменные плащи Core.</summary>
     public static void EnsureDefaults()
     {
         Directory.CreateDirectory(Paths.CssSkins);
         Directory.CreateDirectory(Paths.CssCapes);
-        if (Skins().Count == 0)
+        var marker = Path.Combine(Paths.Root, "css", ".stock-v3");
+        if (!File.Exists(marker))
         {
-            File.WriteAllBytes(Path.Combine(Paths.CssSkins, "Core Путник.png"), DefaultSkin());
-            File.WriteAllBytes(Path.Combine(Paths.CssSkins, "Core Уютный.png"), DefaultSkin(cozy: true));
+            // убираем прежние нарисованные скины - их заменили настоящие Стив и Алекс
+            foreach (var file in new[] { "Core Путник.png", "Core Уютный.png" })
+            {
+                var old = Path.Combine(Paths.CssSkins, file);
+                try { if (File.Exists(old)) File.Delete(old); } catch { }
+            }
+            foreach (var (file, res) in new[] { ("Steve.png", "steve"), ("Alex.png", "alex") })
+            {
+                var dst = Path.Combine(Paths.CssSkins, file);
+                if (!File.Exists(dst)) File.WriteAllBytes(dst, Stock(res));
+            }
+            File.WriteAllText(marker, "");
         }
         if (Capes().Count == 0)
         {
@@ -195,7 +226,9 @@ public static class SkinService
         bool has = Directory.GetFiles(modsDir, "CustomSkinLoader*.jar*").Any();
         if (!has)
         {
-            var url = $"https://api.modrinth.com/v2/project/{CslSlug}/version?loaders={Uri.EscapeDataString("[\"fabric\"]")}" +
+            // для Quilt годится сборка под Fabric
+            var ldr = prof.Loader switch { Loader.Forge => "forge", Loader.NeoForge => "neoforge", _ => "fabric" };
+            var url = $"https://api.modrinth.com/v2/project/{CslSlug}/version?loaders={Uri.EscapeDataString($"[\"{ldr}\"]")}" +
                       $"&game_versions={Uri.EscapeDataString($"[\"{prof.McVersion}\"]")}";
             var vs = JsonDocument.Parse(await Net.GetStringAsync(url)).RootElement;
             if (vs.GetArrayLength() == 0) throw new InvalidOperationException("Для этой версии нет мода скинов.");
@@ -215,7 +248,7 @@ public static class SkinService
         foreach (var f in new[] { skinDst, capeDst }) if (File.Exists(f)) File.Delete(f);
         if (s.SkinSystem == SkinSystem.Css)
         {
-            if (string.IsNullOrEmpty(s.ActiveSkin) || !File.Exists(s.ActiveSkin)) s.ActiveSkin = Skins().FirstOrDefault();
+            if (string.IsNullOrEmpty(s.ActiveSkin) || !File.Exists(s.ActiveSkin)) s.ActiveSkin = DefaultSkinPath();
             if (!string.IsNullOrEmpty(s.ActiveSkin) && File.Exists(s.ActiveSkin)) File.Copy(s.ActiveSkin, skinDst);
             if (!string.IsNullOrEmpty(s.ActiveCape) && File.Exists(s.ActiveCape)) File.Copy(s.ActiveCape, capeDst);
         }

@@ -38,6 +38,45 @@
           "lib/netstandard2.0/CmlLib.Core.Commons.dll": {}
         }
       },
+      "CmlLib.Core.Installer.Forge/1.1.1": {
+        "type": "package",
+        "dependencies": {
+          "CmlLib.Core": "4.0.3",
+          "HtmlAgilityPack": "1.11.48"
+        },
+        "compile": {
+          "lib/netstandard2.0/CmlLib.Core.Installer.Forge.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/CmlLib.Core.Installer.Forge.dll": {}
+        }
+      },
+      "CmlLib.Core.Installer.NeoForge/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CmlLib.Core": "4.0.6",
+          "HtmlAgilityPack": "1.11.48"
+        },
+        "compile": {
+          "lib/netstandard2.0/CmlLib.Core.Installer.NeoForge.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/CmlLib.Core.Installer.NeoForge.dll": {}
+        }
+      },
+      "HtmlAgilityPack/1.11.48": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {
+            "related": ".deps.json;.pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {
+            "related": ".deps.json;.pdb;.xml"
+          }
+        }
+      },
       "LZMA-SDK/19.0.0": {
         "type": "package",
         "compile": {
@@ -213,6 +252,45 @@
           "lib/netstandard2.0/CmlLib.Core.Commons.dll": {}
         }
       },
+      "CmlLib.Core.Installer.Forge/1.1.1": {
+        "type": "package",
+        "dependencies": {
+          "CmlLib.Core": "4.0.3",
+          "HtmlAgilityPack": "1.11.48"
+        },
+        "compile": {
+          "lib/netstandard2.0/CmlLib.Core.Installer.Forge.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/CmlLib.Core.Installer.Forge.dll": {}
+        }
+      },
+      "CmlLib.Core.Installer.NeoForge/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CmlLib.Core": "4.0.6",
+          "HtmlAgilityPack": "1.11.48"
+        },
+        "compile": {
+          "lib/netstandard2.0/CmlLib.Core.Installer.NeoForge.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/CmlLib.Core.Installer.NeoForge.dll": {}
+        }
+      },
+      "HtmlAgilityPack/1.11.48": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {
+            "related": ".deps.json;.pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {
+            "related": ".deps.json;.pdb;.xml"
+          }
+        }
+      },
       "LZMA-SDK/19.0.0": {
         "type": "package",
         "compile": {
@@ -383,6 +461,82 @@
         "cmllib.core.commons.nuspec",
         "icon.png",
         "lib/netstandard2.0/CmlLib.Core.Commons.dll"
+      ]
+    },
+    "CmlLib.Core.Installer.Forge/1.1.1": {
+      "sha512": "zMPwDdq/nkKoTMd7CLKwu81oEsTb1Jd/wHm748FoM4gwCd81rIExwRv4ae0QpFfYc7EeplbVz8mrEn5yqgCx0w==",
+      "type": "package",
+      "path": "cmllib.core.installer.forge/1.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "cmllib.core.installer.forge.1.1.1.nupkg.sha512",
+        "cmllib.core.installer.forge.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/CmlLib.Core.Installer.Forge.dll"
+      ]
+    },
+    "CmlLib.Core.Installer.NeoForge/4.0.1": {
+      "sha512": "2a6gkhnJmumj4E8YlDa40/bMmjMRV6sVp3DY4OjFf5edM4GJHqPw1g/iOHkM+z+jHTnmdX1zbCFOMiR74fzglQ==",
+      "type": "package",
+      "path": "cmllib.core.installer.neoforge/4.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "cmllib.core.installer.neoforge.4.0.1.nupkg.sha512",
+        "cmllib.core.installer.neoforge.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/CmlLib.Core.Installer.NeoForge.dll"
+      ]
+    },
+    "HtmlAgilityPack/1.11.48": {
+      "sha512": "BTYfqMoTtnlUz5hqJZ3qxh/SDWMtJAulcz2vIr2TRj5BhfdJZD1E1HSpNI9rvIQiYJzl2xoVtCNzCcANjzbScQ==",
+      "type": "package",
+      "path": "htmlagilitypack/1.11.48",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "htmlagilitypack.1.11.48.nupkg.sha512",
+        "htmlagilitypack.nuspec",
+        "lib/Net35/HtmlAgilityPack.dll",
+        "lib/Net35/HtmlAgilityPack.pdb",
+        "lib/Net35/HtmlAgilityPack.xml",
+        "lib/Net40-client/HtmlAgilityPack.dll",
+        "lib/Net40-client/HtmlAgilityPack.pdb",
+        "lib/Net40-client/HtmlAgilityPack.xml",
+        "lib/Net40/HtmlAgilityPack.XML",
+        "lib/Net40/HtmlAgilityPack.dll",
+        "lib/Net40/HtmlAgilityPack.pdb",
+        "lib/Net45/HtmlAgilityPack.XML",
+        "lib/Net45/HtmlAgilityPack.dll",
+        "lib/Net45/HtmlAgilityPack.pdb",
+        "lib/NetCore45/HtmlAgilityPack.XML",
+        "lib/NetCore45/HtmlAgilityPack.dll",
+        "lib/NetCore45/HtmlAgilityPack.pdb",
+        "lib/netstandard1.3/HtmlAgilityPack.deps.json",
+        "lib/netstandard1.3/HtmlAgilityPack.dll",
+        "lib/netstandard1.3/HtmlAgilityPack.pdb",
+        "lib/netstandard1.3/HtmlAgilityPack.xml",
+        "lib/netstandard1.6/HtmlAgilityPack.deps.json",
+        "lib/netstandard1.6/HtmlAgilityPack.dll",
+        "lib/netstandard1.6/HtmlAgilityPack.pdb",
+        "lib/netstandard1.6/HtmlAgilityPack.xml",
+        "lib/netstandard2.0/HtmlAgilityPack.deps.json",
+        "lib/netstandard2.0/HtmlAgilityPack.dll",
+        "lib/netstandard2.0/HtmlAgilityPack.pdb",
+        "lib/netstandard2.0/HtmlAgilityPack.xml",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.XML",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.XML",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/uap10.0/HtmlAgilityPack.XML",
+        "lib/uap10.0/HtmlAgilityPack.dll",
+        "lib/uap10.0/HtmlAgilityPack.pdb",
+        "lib/uap10.0/HtmlAgilityPack.pri"
       ]
     },
     "LZMA-SDK/19.0.0": {
@@ -701,6 +855,8 @@
     "net10.0-windows": [
       "CmlLib.Core >= 4.1.0",
       "CmlLib.Core.Auth.Microsoft >= 3.4.0",
+      "CmlLib.Core.Installer.Forge >= 1.1.1",
+      "CmlLib.Core.Installer.NeoForge >= 4.0.1",
       "Microsoft.NET.ILLink.Tasks >= 10.0.9"
     ]
   },
@@ -708,7 +864,7 @@
     "C:\\Users\\podob\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "0.2.1",
+    "version": "0.5.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\podob\\Desktop\\проекты\\core launcher\\CoreLauncher\\CoreLauncher.csproj",
       "projectName": "CoreLauncher",
@@ -756,6 +912,14 @@
           "CmlLib.Core.Auth.Microsoft": {
             "target": "Package",
             "version": "[3.4.0, )"
+          },
+          "CmlLib.Core.Installer.Forge": {
+            "target": "Package",
+            "version": "[1.1.1, )"
+          },
+          "CmlLib.Core.Installer.NeoForge": {
+            "target": "Package",
+            "version": "[4.0.1, )"
           },
           "Microsoft.NET.ILLink.Tasks": {
             "suppressParent": "All",

@@ -9,7 +9,7 @@ namespace CoreLauncher.Core;
 
 public enum AccountMode { Offline, Microsoft }
 public enum SkinSystem { Css, Official, ElyBy, TLauncher }
-public enum Loader { Vanilla, Fabric }
+public enum Loader { Vanilla, Fabric, Quilt, Forge, NeoForge, LiteLoader, Rift, ModLoader }
 public enum LaunchBehavior { Hide, Minimize, Keep }
 
 public class Profile
@@ -26,13 +26,15 @@ public class Profile
 public class LauncherSettings
 {
     // --- аккаунт
-    public string Nickname { get; set; } = "Player";
+    public string Nickname { get; set; } = "Minecrafter";
     public AccountMode Mode { get; set; } = AccountMode.Offline;
 
     // --- профили
     public List<Profile> Profiles { get; set; } = new();
     public string? ActiveProfileId { get; set; }
     public bool ShowSnapshots { get; set; }
+    /// <summary>Показывать старые беты и альфы (отдельно от снапшотов).</summary>
+    public bool ShowOldVersions { get; set; }
 
     // --- игра
     public bool AutoRam { get; set; } = true;
@@ -49,7 +51,9 @@ public class LauncherSettings
     public LaunchBehavior OnLaunch { get; set; } = LaunchBehavior.Hide;
     public bool ReopenOnExit { get; set; } = true;
     public bool SaveGameLog { get; set; } = true;
-    public string Accent { get; set; } = "Янтарь";
+    public string Accent { get; set; } = "Апельсин";
+    /// <summary>Версия оформления: при переходе на новое один раз сбрасываем акцент.</summary>
+    public int ThemeVersion { get; set; }
     public bool Animations { get; set; } = true;
     public bool FirstRunDone { get; set; }
     public string UpdateSource { get; set; } = "github:SGM133/CORE-LAUNCHER";

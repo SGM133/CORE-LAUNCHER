@@ -487,3 +487,11 @@ C:\Users\podob\Desktop\проекты\core launcher\CoreLauncher\obj\Release\net
 C:\Users\podob\Desktop\проекты\core launcher\CoreLauncher\obj\Release\net10.0-windows\win-x64\CoreLauncher.pdb
 C:\Users\podob\Desktop\проекты\core launcher\CoreLauncher\obj\Release\net10.0-windows\win-x64\CoreLauncher.genruntimeconfig.cache
 C:\Users\podob\Desktop\проекты\core launcher\CoreLauncher\obj\Release\net10.0-windows\win-x64\ref\CoreLauncher.dll
+C:\Users\podob\Desktop\проекты\core launcher\CoreLauncher\obj\Release\net10.0-windows\win-x64\CoreLauncher.sourcelink.json
+C:\Users\podob\Desktop\проекты\core launcher\CoreLauncher\bin\Release\net10.0-windows\win-x64\CmlLib.Core.Installer.Forge.dll
+C:\Users\podob\Desktop\проекты\core launcher\CoreLauncher\bin\Release\net10.0-windows\win-x64\CmlLib.Core.Installer.NeoForge.dll
+C:\Users\podob\Desktop\проекты\core launcher\CoreLauncher\bin\Release\net10.0-windows\win-x64\HtmlAgilityPack.dll
+C:\Users\podob\Desktop\проекты\core launcher\CoreLauncher\obj\Release\net10.0-windows\win-x64\DocWindow.baml
+C:\Users\podob\Desktop\проекты\core launcher\CoreLauncher\obj\Release\net10.0-windows\win-x64\SplashWindow.baml
+C:\Users\podob\Desktop\проекты\core launcher\CoreLauncher\obj\Release\net10.0-windows\win-x64\DocWindow.g.cs
+C:\Users\podob\Desktop\проекты\core launcher\CoreLauncher\obj\Release\net10.0-windows\win-x64\SplashWindow.g.cs

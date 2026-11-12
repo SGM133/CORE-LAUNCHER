@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "EIorn0IEnZU=",
+  "dgSpecHash": "xps2qWSMyrM=",
   "success": true,
   "projectFilePath": "C:\\Users\\podob\\Desktop\\проекты\\core launcher\\CoreLauncher\\CoreLauncher.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\podob\\.nuget\\packages\\cmllib.core\\4.1.0\\cmllib.core.4.1.0.nupkg.sha512",
     "C:\\Users\\podob\\.nuget\\packages\\cmllib.core.auth.microsoft\\3.4.0\\cmllib.core.auth.microsoft.3.4.0.nupkg.sha512",
     "C:\\Users\\podob\\.nuget\\packages\\cmllib.core.commons\\4.0.0\\cmllib.core.commons.4.0.0.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\cmllib.core.installer.forge\\1.1.1\\cmllib.core.installer.forge.1.1.1.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\cmllib.core.installer.neoforge\\4.0.1\\cmllib.core.installer.neoforge.4.0.1.nupkg.sha512",
+    "C:\\Users\\podob\\.nuget\\packages\\htmlagilitypack\\1.11.48\\htmlagilitypack.1.11.48.nupkg.sha512",
     "C:\\Users\\podob\\.nuget\\packages\\lzma-sdk\\19.0.0\\lzma-sdk.19.0.0.nupkg.sha512",
     "C:\\Users\\podob\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.1\\microsoft.extensions.dependencyinjection.abstractions.8.0.1.nupkg.sha512",
     "C:\\Users\\podob\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.1\\microsoft.extensions.logging.abstractions.8.0.1.nupkg.sha512",

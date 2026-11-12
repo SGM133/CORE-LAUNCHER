@@ -27,17 +27,64 @@ public partial class MainWindow : Window
 
     public static readonly Dictionary<string, string> Accents = new()
     {
-        ["Янтарь"] = "#FFC857", ["Коралл"] = "#FF8A7A", ["Мята"] = "#7DE0B5", ["Лаванда"] = "#B7A4FF",
+        ["Апельсин"] = "#FF8C1A", ["Тыква"] = "#F26B1D", ["Абрикос"] = "#FFA85C", ["Янтарь"] = "#FFC857",
     };
+
+    // фон каждого раздела
+    static readonly Dictionary<string, string> Backgrounds = new()
+    {
+        ["Play"] = "bg_play", ["Console"] = "bg_settings", ["Skins"] = "bg_skins", ["Mods"] = "bg_mods", ["Settings"] = "bg_settings", ["Profiles"] = "bg_profiles",
+    };
+    readonly Dictionary<string, ImageSource> _bgCache = new();
+
+    void SetBackground(string tag, bool animate = true)
+    {
+        if (!Backgrounds.TryGetValue(tag, out var file)) return;
+        try
+        {
+            if (!_bgCache.TryGetValue(file, out var img))
+            {
+                var bmp = new System.Windows.Media.Imaging.BitmapImage();
+                bmp.BeginInit();
+                bmp.UriSource = new Uri($"pack://application:,,,/Assets/{file}.jpg");
+                bmp.CacheOption = System.Windows.Media.Imaging.BitmapCacheOption.OnLoad;
+                bmp.EndInit(); bmp.Freeze();
+                _bgCache[file] = img = bmp;
+            }
+            BgA.Source = BgB.Source ?? img;   // прежний фон остаётся снизу, новый проявляется поверх
+            BgB.Source = img;
+            BgB.BeginAnimation(OpacityProperty, animate
+                ? new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(380))
+                : new DoubleAnimation(1, 1, TimeSpan.Zero));
+        }
+        catch { }
+    }
 
     public MainWindow()
     {
         InitializeComponent();
         Paths.EnsureCreated();
         SkinService.EnsureDefaults();
-        _pages = new FrameworkElement[] { PagePlay, PageProfiles, PageMods, PageSkins, PageSettings };
+        _pages = new FrameworkElement[] { PagePlay, PageProfiles, PageMods, PageSkins, PageConsole, PageSettings };
 
+        // без расспросов при первом запуске: ник по умолчанию - Minecrafter, поменять можно на вкладке «Играть»
+        if (!_s.FirstRunDone)
+        {
+            if (string.IsNullOrWhiteSpace(_s.Nickname) || _s.Nickname == "Player") _s.Nickname = "Minecrafter";
+            _s.FirstRunDone = true; _s.Save();
+        }
+
+        SetNav(NavPlay, "Играть", PixelScene.IcoPlay);
+        SetNav(NavProfiles, "Профили", PixelScene.IcoProfiles);
+        SetNav(NavMods, "Моды", PixelScene.IcoMods);
+        SetNav(NavSkins, "Скины", PixelScene.IcoSkins);
+        SetNav(NavConsole, "Консоль", PixelScene.IcoConsole);
+        SetNav(NavSettings, "Настройки", PixelScene.IcoSettings);
+        InitConsole();
+
+        if (_s.ThemeVersion < 2) { _s.Accent = "Апельсин"; _s.ThemeVersion = 2; _s.Save(); }   // переход на оранжевый стиль
         ApplyAccent(_s.Accent);
+        SetBackground("Play", animate: false);
         var (fire, enable) = PixelScene.Campfire(9);
         CampfireHost.Content = fire; _fireEnable = enable;
 
@@ -55,7 +102,6 @@ public partial class MainWindow : Window
         Loaded += async (_, _) =>
         {
             Animate(_s.Animations);
-            if (!_s.FirstRunDone) { WelcomeNick.Text = _s.Nickname == "Player" ? "" : _s.Nickname; Welcome.Visibility = Visibility.Visible; WelcomeNick.Focus(); }
             await LoadVersionsAsync();
             _ = AutoCheckUpdateAsync();
         };
@@ -64,7 +110,7 @@ public partial class MainWindow : Window
     // ---------- тема ----------
     void ApplyAccent(string name)
     {
-        if (!Accents.TryGetValue(name, out var hex)) { name = "Янтарь"; hex = Accents[name]; }
+        if (!Accents.TryGetValue(name, out var hex)) { name = "Апельсин"; hex = Accents[name]; }
         var c = (Color)ColorConverter.ConvertFromString(hex);
         Application.Current.Resources["Accent"] = new SolidColorBrush(c);
         Application.Current.Resources["AccentColor"] = c;
@@ -73,7 +119,7 @@ public partial class MainWindow : Window
 
     void Animate(bool on)
     {
-        PixelScene.Stars(StarsCanvas, 70, Math.Max(ActualWidth - 240, 900), Math.Max(ActualHeight, 700), on);
+        PixelScene.Stars(StarsCanvas, 36, Math.Max(ActualWidth - 240, 900), Math.Max(ActualHeight, 700), on);
         _fireEnable?.Invoke(on);
     }
 
@@ -101,29 +147,78 @@ public partial class MainWindow : Window
         var tag = (string)((RadioButton)s).Tag;
         FrameworkElement page = tag switch
         {
-            "Profiles" => PageProfiles, "Mods" => PageMods, "Skins" => PageSkins, "Settings" => PageSettings, _ => PagePlay,
+            "Profiles" => PageProfiles, "Mods" => PageMods, "Skins" => PageSkins, "Console" => PageConsole, "Settings" => PageSettings, _ => PagePlay,
         };
+        Log.Info("Открыт раздел: " + tag);
+        if (tag == "Console") ConsoleBox.ScrollToEnd();
         foreach (var p in _pages) p.Visibility = p == page ? Visibility.Visible : Visibility.Collapsed;
         page.Opacity = 0;
         page.BeginAnimation(OpacityProperty, new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(220)));
+        SetBackground(tag);
         if (tag == "Mods") RefreshMods();
         if (tag == "Skins") RefreshSkinsPage();
         if (tag == "Profiles") LoadEditor();
         if (tag == "Settings") UpdateDataInfo();
     }
 
-    void WelcomeGo_Click(object s, RoutedEventArgs e)
+    /// <summary>Кнопка раздела: пиксельный значок + подпись.</summary>
+    void SetNav(RadioButton b, string title, string[] icon)
     {
-        var nick = WelcomeNick.Text.Trim();
-        if (!Regex.IsMatch(nick, "^[A-Za-z0-9_]{3,16}$"))
-        {
-            WelcomeNick.BorderBrush = (Brush)FindResource("Danger");
-            return;
-        }
-        _s.Nickname = nick; NickBox.Text = nick; _s.FirstRunDone = true; _s.Save();
-        UpdateGreeting();
-        Welcome.Visibility = Visibility.Collapsed;
+        var sp = new StackPanel { Orientation = Orientation.Horizontal };
+        var ico = PixelScene.Icon(icon, 2);
+        ico.Margin = new Thickness(0, 0, 14, 0);
+        sp.Children.Add(ico);
+        sp.Children.Add(new TextBlock { Text = title, FontFamily = (FontFamily)FindResource("Pixel"), VerticalAlignment = VerticalAlignment.Center });
+        b.Content = sp;
     }
+
+    // ---------- консоль: всё, что лаунчер делал за этот сеанс ----------
+    void InitConsole()
+    {
+        ConsoleBox.Text = Log.SessionText;
+        ConsoleFile.Text = Log.FilePath == null ? "Журнал на диск не пишется" : "Журнал сеанса: " + Path.GetFileName(Log.FilePath);
+        Log.Line += line => Dispatcher.BeginInvoke(() =>
+        {
+            if (ConsoleBox.Text.Length > 300_000) ConsoleBox.Text = ConsoleBox.Text[100_000..];
+            ConsoleBox.AppendText(line + Environment.NewLine);
+            if (PageConsole.Visibility == Visibility.Visible) ConsoleBox.ScrollToEnd();
+        });
+
+        // каждое нажатие кнопки - в журнал
+        EventManager.RegisterClassHandler(typeof(System.Windows.Controls.Primitives.ButtonBase),
+            System.Windows.Controls.Primitives.ButtonBase.ClickEvent, new RoutedEventHandler((s, _) =>
+            {
+                if (s is not System.Windows.Controls.Primitives.ButtonBase b || b is System.Windows.Controls.Primitives.RepeatButton) return;
+                var name = b.Content as string ?? System.Windows.Automation.AutomationProperties.GetName(b);
+                if (string.IsNullOrEmpty(name)) name = b.ToolTip as string ?? b.Name;
+                if (!string.IsNullOrEmpty(name)) Log.Info("Нажато: " + name.Trim());
+            }));
+
+        // все строки состояния тоже дублируем в журнал (кроме потока имён скачиваемых файлов)
+        foreach (var tb in new[] { StatusText, SearchStatus, OnlineStatus, LookupStatus, UpdStatus, MsStatus, ProfileStatus })
+        {
+            var d = System.ComponentModel.DependencyPropertyDescriptor.FromProperty(TextBlock.TextProperty, typeof(TextBlock));
+            d.AddValueChanged(tb, (_, _) =>
+            {
+                var t = tb.Text;
+                if (string.IsNullOrWhiteSpace(t)) return;
+                if (t.StartsWith("Загрузка файлов:") || t.StartsWith("Forge: ") || t.StartsWith("NeoForge: ")) return;
+                Log.Info(t);
+            });
+        }
+    }
+
+    void Doc_Click(object s, RoutedEventArgs e)
+    {
+        new DocWindow((string)((FrameworkElement)s).Tag) { Owner = this }.ShowDialog();
+    }
+
+    void ConsoleCopy_Click(object s, RoutedEventArgs e)
+    {
+        try { Clipboard.SetText(ConsoleBox.Text); ConsoleFile.Text = "Скопировано в буфер обмена."; } catch { }
+    }
+
+    void ConsoleFolder_Click(object s, RoutedEventArgs e) => OpenFolder(Log.Dir);
 
     // ---------- аккаунт ----------
     void Mode_Click(object s, RoutedEventArgs e) { ApplyMode(); _s.Mode = ModeMs.IsChecked == true ? AccountMode.Microsoft : AccountMode.Offline; _s.Save(); }
@@ -157,7 +252,7 @@ public partial class MainWindow : Window
     async Task LoadVersionsAsync()
     {
         StatusText.Text = "Загружаем список версий…";
-        _versions = await _game.GetVersionsAsync(_s.ShowSnapshots);
+        _versions = await _game.GetVersionsAsync(_s.ShowSnapshots, _s.ShowOldVersions);
         if (_versions.Count == 0) { StatusText.Text = "Не удалось получить версии (нет сети?)"; return; }
 
         bool changed = false;
@@ -224,6 +319,7 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             StatusText.Text = "Ошибка запуска: " + ex.Message;
+            Log.Error("Подробности ошибки запуска: " + ex);
         }
         finally
         {

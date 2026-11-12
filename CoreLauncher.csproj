@@ -9,7 +9,7 @@
     <AssemblyName>CoreLauncher</AssemblyName>
     <RootNamespace>CoreLauncher</RootNamespace>
     <ApplicationIcon>Assets\core.ico</ApplicationIcon>
-    <Version>0.2.1</Version>
+    <Version>0.5.0</Version>
     <Product>Core Launcher</Product>
     <Company>Core</Company>
     <Description>Core Launcher - сначала уют, потом игра</Description>
@@ -18,15 +18,28 @@
   <ItemGroup>
     <Resource Include="Assets\logo.png" />
     <Resource Include="Assets\core.ico" />
-    <Resource Include="Assets\PixelifySans.ttf" />
+    <Resource Include="Assets\MinecraftRus.ttf" />
+    <Resource Include="Assets\spruce_log.png" />
+    <Resource Include="Assets\docs\*.txt" />
+    <Resource Include="Assets\bg_*.jpg" />
+    <Resource Include="Assets\skins\*.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CmlLib.Core" Version="4.1.0" />
     <PackageReference Include="CmlLib.Core.Auth.Microsoft" Version="3.4.0" />
+    <PackageReference Include="CmlLib.Core.Installer.Forge" Version="1.1.1" />
+    <PackageReference Include="CmlLib.Core.Installer.NeoForge" Version="4.0.1" />
   </ItemGroup>
 
 </Project>
+
+
+
+
+
+
+
 
 
 
